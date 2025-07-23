@@ -35,10 +35,14 @@ public class JouranalController {
         return journalEntry.map(entry -> new ResponseEntity<>(entry, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/")
-    public JournalEntry createEntry(@RequestBody JournalEntry journalEntry) {
-        journalEntry.setDate(LocalDateTime.now());
-        return journalEntryService.saveEntry(journalEntry);
+    @PostMapping("/{userName}")
+    public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry myEntry, @PathVariable String userName) {
+        try{
+            journalEntryService.saveEntry(myEntry,userName);
+            return new ResponseEntity<>(myEntry,HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(myEntry,HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/{userName}")

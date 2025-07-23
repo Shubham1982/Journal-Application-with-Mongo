@@ -1,8 +1,6 @@
 package com.journalapplication.journal_application.service;
 
-import com.journalapplication.journal_application.Repository.JournalRepository;
 import com.journalapplication.journal_application.Repository.UserRepository;
-import com.journalapplication.journal_application.entity.JournalEntry;
 import com.journalapplication.journal_application.entity.User;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
